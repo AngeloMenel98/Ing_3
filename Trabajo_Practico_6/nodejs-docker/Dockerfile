@@ -1,8 +1,9 @@
-FROM node:14.20.0-alpine
-WORKDIR /usr/src/my-app
+FROM node:16.17.0-alpine
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 RUN npx create-react-app my-app
-COPY package*.json .
+RUN cd my-app
+WORKDIR /usr/src/app/my-app
 RUN npm install
-COPY . .
-RUN npm start
+CMD ["npm","start"]
 EXPOSE 3000
